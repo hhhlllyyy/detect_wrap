@@ -11,6 +11,7 @@ using namespace std;
 using namespace cv;
 VPDetection detector;
 // LSD line segment detection
+void LineMerge(std::vector< std::vector<double> > &lines, float termTh, float distTh, float angTh);
 void LineDetect(cv::Mat image, double thLength, std::vector<std::vector<double> > &lines)
 {
 	lines.clear();
@@ -57,7 +58,7 @@ void LineDetect(cv::Mat image, double thLength, std::vector<std::vector<double> 
 			lines.push_back(lineTemp);
 		}
 	}
-
+//    LineMerge(lines, 3.0, 20, 5.0);
 	free_ntuple_list(linesLSD);
 }
 
@@ -351,7 +352,7 @@ bool line2VPS(std::vector<std::vector<double> > &lines, std::vector<std::vector<
 	}
 	for (int i = 0; i < _clusters.size(); ++i)
 	{
-		if (_clusters[i].size()>20)
+		if (_clusters[i].size()>10)
 		{
 			NN++;
 		}
@@ -403,13 +404,13 @@ bool line2VPS(std::vector<std::vector<double> > &lines, std::vector<std::vector<
 //angThresh,threshold for rotation about x and y axis
 //allRot = false , only using the rotation with z axis
 //bShape = true  , keep the shap
-bool wrapImagePerspective(cv::Mat &src, cv::Mat &dst, cv::Mat &H, double angThresh, bool bShape, bool allRot, bool bDrawLis)
+bool wrapImagePerspective(cv::Mat &src, cv::Mat &dst, cv::Mat &H, cv::Mat &R, double angThresh, bool bShape, bool allRot, bool bDrawLis)
 {
 	// LSD line segment detection
 	double thLength = 20.0;
 	std::vector<std::vector<double> > lines;
 	LineDetect(src, thLength, lines);
-	if (lines.size()<20)
+	if (lines.size()<40)
 	{
 		return  false;
 	}
@@ -481,7 +482,7 @@ bool wrapImagePerspective(cv::Mat &src, cv::Mat &dst, cv::Mat &H, double angThre
 	    angle = 180-angle;
     }
 	std::cout<<"vector angle:"<<angle<<endl;
-	if (angle<80)
+	if (angle<85)
     {
         if (bDrawLis)
         {
@@ -490,7 +491,7 @@ bool wrapImagePerspective(cv::Mat &src, cv::Mat &dst, cv::Mat &H, double angThre
         return  false;
     }
 
-	cv::Mat R = cv::Mat::eye(3, 3, CV_32F);
+//	cv::Mat R = cv::Mat::eye(3, 3, CV_32F);
 	r1.copyTo(R.colRange(0, 1).rowRange(0, 3));
 	r2.copyTo(R.colRange(1, 2).rowRange(0, 3));
 	cv::Mat r3 = R.col(0).cross(R.col(1)); r3 = r3 / cv::norm(r3);
@@ -582,8 +583,18 @@ void calImageRotation(cv::Mat &src, cv::Mat &R, double angThresh, bool allRot)
 	R = allRot ? Get_R(ang_rot) : Get_R(myAngle(0, 0, ang_rot.az));
 }
 
-void wrapImagePerspectiveH(cv::Mat &src, cv::Mat &dst, cv::Mat &H)
+void wrapImagePerspectiveH(cv::Mat &src, cv::Mat &dst, cv::Mat &R, cv::Mat &H)
 {
+	// Camera internal parameters
+	cv::Point2d pp(src.cols / 2, src.rows / 2);        // Principle point (in pixel)
+	//double f = 6.053 / 0.009, Focal length (in pixel)
+	double f = 1.2*MAX(src.cols, src.rows);
+	//calibration matrix of camera
+	cv::Mat K = (cv::Mat_<float>(3, 3) << f, 0, pp.x, 0, f, pp.y, 0, 0, 1);
+	//vp1 = KR[1,0,0]T=Kr1 vp2 = KR[0, 1, 0]T=Kr2
+	//H = K(KR)-1 = KRTK-1
+	cv::Mat K_inv = K.inv();
+	H = K*R.t()*K_inv*H;
 	//cout << H << endl;
 	cv::Mat pt0 = H*(cv::Mat_<float>(3, 1) << 0, 0, 1);
 	cv::Mat pt1 = H*(cv::Mat_<float>(3, 1) << src.cols, 0, 1);

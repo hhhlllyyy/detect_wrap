@@ -145,7 +145,7 @@ cv::Rect get_rect_valid(cv::Point pt1, cv::Point pt2, int w, int h)
     int x1 = CLAMP(pt2.x, 0, w);
     int y0 = CLAMP(pt1.y, 0, h);
     int y1 = CLAMP(pt2.y, 0, h);
-    return cv::Rect(x0, y0, x1-x0, y1-y0);
+    return cv::Rect(cv::Point(x0, y0), cv::Point(x1, y1));
 }
 cv::Rect get_boundingRect(std::vector<std::vector<cv::Point>> &boxes, cv::Size im, cv::Mat A)
 {
@@ -178,7 +178,7 @@ cv::Rect get_boundingRect(std::vector<std::vector<cv::Point>> &boxes, cv::Size i
             }
         }
     }
-    cv::Rect rec = get_rect_valid(cv::Point(minX, minY), cv::Point(maxX, maxY), im.width, im.height);
+    cv::Rect rec = get_rect_valid(cv::Point(minX, minY), cv::Point(maxX, maxY), im.width-1, im.height-1);
     return rec;
 }
 
@@ -311,7 +311,7 @@ int rotateImage(Mat img,Mat & imgout, int degree,int border_value,cv::Mat &A)
 int imo_wrap_image_perspective_reg(std::string & img_name, cv::Mat &dstImage_roi, cv::Mat &dstImage, cv::Mat H_roi, cv::Mat H)
 {
     std::vector<std::vector<cv::Point>> boxes = get_box_post("http://192.168.6.242:43010/detect", (char*)img_name.data());
-
+    double start = cv::getTickCount();
     cv::Mat img = cv::imread(img_name, 1);
     double scale = 1.0;
     int    max_size = 1280;
@@ -349,20 +349,24 @@ int imo_wrap_image_perspective_reg(std::string & img_name, cv::Mat &dstImage_roi
         I22.copyTo(A(cv::Rect(0, 0, 2, 2)));
         rotateImage(img, img_rot, angle, 0, A);
         cv::Rect roi = get_boundingRect(boxes, cv::Size(img_rot.cols, img_rot.rows), A);
+        bool bSucceed = false;
         cv::Rect roi_resize(roi.x/scale, roi.y/scale, roi.width/scale, roi.height/scale);
         cv::Mat img_roi_resize = img_resize(roi_resize).clone();
-        cv::imshow("roi", img_roi_resize);
-        bool bSucceed = wrapImagePerspective(img_roi_resize, dstImage_roi, H_roi, 30, true, true, true);
+        cv::Mat R = cv::Mat::eye(3, 3, CV_32F);
+        bSucceed = wrapImagePerspective(img_roi_resize, dstImage_roi, H_roi, R, 30, true, true, true);
         cv::imshow("line", img_roi_resize);
+
+        cout<<"wrap time:"<<1000*(cv::getTickCount()-start)/(cv::getTickFrequency())<<"ms"<<endl;
         if (bSucceed)
         {
+            //cv::imshow("dstImage_roi", dstImage_roi);
             cv::Mat H0 = cv::Mat::eye(3, 3, CV_32F);
             H0 = H0/scale;
-            H_roi = H_roi*H0;
+            H_roi = H0.clone();
             H = H_roi.clone();
             cv::Mat img_roi = img_rot(roi).clone();
-            wrapImagePerspectiveH(img_roi, dstImage_roi, H_roi);
-            wrapImagePerspectiveH(img_rot, dstImage, H);
+            wrapImagePerspectiveH(img_roi, dstImage_roi, R, H_roi);
+            wrapImagePerspectiveH(img_rot, dstImage, R, H);
             return 1;
         }
         else
@@ -386,7 +390,7 @@ int imo_wrap_image_perspective_reg(std::string & img_name, cv::Mat &dstImage_roi
 #include <dirent.h>
 using namespace std;
 int main(int argc, char ** argv) {
-    const char* path = "../test/旋转前后的图/";
+    const char* path = "../test/incorrect/";
 
     std::string path0 = path;
     vector<string> files;
@@ -422,9 +426,13 @@ int main(int argc, char ** argv) {
         cv::Mat img_wrap , img_wrap_roi;
         cv::Mat H, H_roi;
         std::string img_name = files[i];
+        std::cout<<img_name<<endl;
         imo_wrap_image_perspective_reg(img_name, img_wrap_roi, img_wrap, H_roi, H);
-        cv::imshow("wrap_roi", img_wrap_roi);
-        cv::imshow("wrap", img_wrap);
+        cv::Mat img_wrap_roi_resize, img_wrap_resize;
+        cv::resize(img_wrap, img_wrap_resize, cv::Size(img_wrap.cols/2, img_wrap.rows/2));
+        cv::resize(img_wrap_roi, img_wrap_roi_resize, cv::Size(img_wrap_roi.cols/2, img_wrap_roi.rows/2));
+        cv::imshow("wrap_roi", img_wrap_roi_resize);
+        cv::imshow("wrap", img_wrap_resize);
         cv::waitKey(0);
         cv::destroyAllWindows();
 

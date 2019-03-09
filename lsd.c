@@ -1750,7 +1750,7 @@ ntuple_list LineSegmentDetection( image_double image, double scale,
 ntuple_list lsd(image_double image)
 {
   /* LSD parameters */
-  double scale = 0.6;       /* Scale the image by Gaussian filter to 'scale'. */
+  double scale = 0.4;       /* Scale the image by Gaussian filter to 'scale'. */
   double sigma_scale = 0.6; /* Sigma for Gaussian filter is computed as
                                 sigma = sigma_scale/scale.                    */
   double quant = 2.0;       /* Bound to the quantization error on the
