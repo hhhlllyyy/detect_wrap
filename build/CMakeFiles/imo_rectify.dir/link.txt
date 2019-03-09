@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -std=c++11 -Wall -O2 -g  -shared -Wl,-soname,libimo_rectify.so -o libimo_rectify.so CMakeFiles/imo_rectify.dir/lsd.c.o CMakeFiles/imo_rectify.dir/rectify.cpp.o CMakeFiles/imo_rectify.dir/rotationmath.cpp.o CMakeFiles/imo_rectify.dir/VPDetection.cpp.o CMakeFiles/imo_rectify.dir/wrapImageRef.cpp.o CMakeFiles/imo_rectify.dir/main.cpp.o  -L/usr/local/lib 

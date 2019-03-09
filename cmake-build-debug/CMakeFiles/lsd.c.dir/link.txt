@@ -1,0 +1,2 @@
+/usr/bin/ar qc liblsd.c.a  CMakeFiles/lsd.c.dir/rotationmath.cpp.o CMakeFiles/lsd.c.dir/VPDetection.cpp.o CMakeFiles/lsd.c.dir/wrapImageRef.cpp.o
+/usr/bin/ranlib liblsd.c.a

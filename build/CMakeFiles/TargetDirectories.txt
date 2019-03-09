@@ -1,0 +1,4 @@
+/media/gh/Work/standard3/rectify/build/CMakeFiles/rebuild_cache.dir
+/media/gh/Work/standard3/rectify/build/CMakeFiles/edit_cache.dir
+/media/gh/Work/standard3/rectify/build/CMakeFiles/MAIN.dir
+/media/gh/Work/standard3/rectify/build/CMakeFiles/imo_rectify.dir

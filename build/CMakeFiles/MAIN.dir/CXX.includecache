@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/media/gh/Work/standard3/rectify/main.cpp
+rectify.h
+/media/gh/Work/standard3/rectify/rectify.h
+stdio.h
+-
+string
+-
+fstream
+-
+iostream
+-
+
+/media/gh/Work/standard3/rectify/rectify.h
+

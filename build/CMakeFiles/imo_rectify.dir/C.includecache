@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/media/gh/Work/standard3/rectify/lsd.c
+stdio.h
+-
+stdlib.h
+-
+math.h
+-
+float.h
+-
+lsd.h
+/media/gh/Work/standard3/rectify/lsd.h
+
+/media/gh/Work/standard3/rectify/lsd.h
+

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="detect_wrap"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MAIN">
+				<Option output="/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/MAIN" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/home/christ/zyoung/smoking/imagWrap/rectify/include"/>
+					<Add directory="/home/christ/zyoung/smoking/imagWrap/rectify/include_"/>
+					<Add directory="/home/christ/zyoung/smoking/imagWrap/rectify"/>
+					<Add directory="/home/christ/zyoung/smoking/imagWrap/rectify/kit"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 MAIN"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MAIN/fast">
+				<Option output="/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/MAIN" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/home/christ/zyoung/smoking/imagWrap/rectify/include"/>
+					<Add directory="/home/christ/zyoung/smoking/imagWrap/rectify/include_"/>
+					<Add directory="/home/christ/zyoung/smoking/imagWrap/rectify"/>
+					<Add directory="/home/christ/zyoung/smoking/imagWrap/rectify/kit"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 MAIN/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/christ/zyoung/smoking/imagWrap/rectify/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/christ/zyoung/smoking/imagWrap/rectify/VPDetection.cpp">
+			<Option target="MAIN"/>
+		</Unit>
+		<Unit filename="/home/christ/zyoung/smoking/imagWrap/rectify/VPDetection.h">
+			<Option target="MAIN"/>
+		</Unit>
+		<Unit filename="/home/christ/zyoung/smoking/imagWrap/rectify/lsd.c">
+			<Option target="MAIN"/>
+		</Unit>
+		<Unit filename="/home/christ/zyoung/smoking/imagWrap/rectify/lsd.h">
+			<Option target="MAIN"/>
+		</Unit>
+		<Unit filename="/home/christ/zyoung/smoking/imagWrap/rectify/main.cpp">
+			<Option target="MAIN"/>
+		</Unit>
+		<Unit filename="/home/christ/zyoung/smoking/imagWrap/rectify/rotationmath.cpp">
+			<Option target="MAIN"/>
+		</Unit>
+		<Unit filename="/home/christ/zyoung/smoking/imagWrap/rectify/rotationmath.h">
+			<Option target="MAIN"/>
+		</Unit>
+		<Unit filename="/home/christ/zyoung/smoking/imagWrap/rectify/wrapImageRef.cpp">
+			<Option target="MAIN"/>
+		</Unit>
+		<Unit filename="/home/christ/zyoung/smoking/imagWrap/rectify/wrapImageRef.h">
+			<Option target="MAIN"/>
+		</Unit>
+		<Unit filename="/home/christ/zyoung/smoking/imagWrap/rectify/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
